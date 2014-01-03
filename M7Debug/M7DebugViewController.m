@@ -64,43 +64,10 @@
 
 - (CMMotionActivityManager *)activityManager
 {
-	// Lazy initialization
 	if (!_activityManager && [CMMotionActivityManager isActivityAvailable])
 	{
 		_activityManager = [[CMMotionActivityManager alloc] init];
-		
-		// Block that will handle activity updates. 
-		// Generates strings from CMMotionActivity and applies them to the view.
-		CMMotionActivityHandler activityHandler = ^(CMMotionActivity *activity)
-		{
-			// Current activity
-			NSString *activityName = self.notAvailableSymbol;
-			if (activity.stationary) activityName = @"Stationary";
-			else if (activity.walking) activityName = @"Walking";
-			else if (activity.running) activityName = @"Running";
-			else if (activity.automotive) activityName = @"Automotive";
-			else if (activity.unknown) activityName = @"Unknown";
-			
-			[[[self.objects objectAtIndex:0] detailTextLabel] setText:activityName];
-			
-			// Confidence
-			NSString *confidence = self.notAvailableSymbol;
-			if (activity.confidence == CMMotionActivityConfidenceHigh) confidence = @"High";
-			else if (activity.confidence == CMMotionActivityConfidenceMedium) confidence = @"Medium";
-			else if (activity.confidence == CMMotionActivityConfidenceLow) confidence = @"Low";
-			
-			[[[self.objects objectAtIndex:2] detailTextLabel] setText:confidence];
-			
-			// Start date
-			NSString *startTime = [self.dateFormatter stringFromDate:[activity startDate]];
-			[[[self.objects objectAtIndex:3] detailTextLabel] setText:startTime];
-			
-			[self.tableView reloadData];
-		};
-		
-		[_activityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:activityHandler];
 	}
-	
 	return _activityManager;
 }
 
@@ -109,30 +76,7 @@
 	if (!_stepCounter && [CMStepCounter isStepCountingAvailable])
 	{
 		_stepCounter = [[CMStepCounter alloc] init];
-		
-		CMStepUpdateHandler stepHandler = ^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error)
-		{
-			// Generate NSString representing number of steps or error
-			NSString *stepsText = self.notAvailableSymbol;
-			if (error != nil)
-			{
-				stepsText = @"Error";
-				NSLog(@"CMStepUpdateHandler received error: %@", [error description]); // TODO: replace w/ uialertview?
-			}
-			else
-			{
-				stepsText = [NSString stringWithFormat:@"%ld", numberOfSteps];
-			}
-			
-			// Apply to view
-			[[[self.objects objectAtIndex:4] detailTextLabel] setText:stepsText];
-			[self.tableView reloadData];
-		};
-		
-		// Attach the step handler block to the step manager. Update every time there is a new step.
-		[_stepCounter startStepCountingUpdatesToQueue:[NSOperationQueue mainQueue] updateOn:1 withHandler:stepHandler];
 	}
-	
 	return _stepCounter;
 }
 
@@ -159,20 +103,76 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	self.navigationItem.leftBarButtonItem = nil;
 	self.navigationItem.rightBarButtonItem = nil;
-}
-/* timer no longer needed b/c we updating happens in callbacks from CoreMotion
-- (void)viewWillAppear:(BOOL)animated
-{
-	// start the timer
-	self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateMotion) userInfo:nil repeats:YES];
-	[self.refreshTimer setTolerance:0.05];
+	self.navigationController.navigationBar.tintColor = [UIColor blueColor];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-	// stop the timer
-	[_refreshTimer invalidate];
-}*/
+	if (self.activityManager != nil)
+	{
+		// Block that will handle activity updates. 
+		// Generates strings from CMMotionActivity and applies them to the view.
+		CMMotionActivityHandler activityHandler = ^(CMMotionActivity *activity)
+		{
+			// Current activity
+			NSString *activityName = self.notAvailableSymbol;
+			if (activity.stationary) activityName = @"Stationary";
+			else if (activity.walking) activityName = @"Walking";
+			else if (activity.running) activityName = @"Running";
+			else if (activity.automotive) activityName = @"Automotive";
+			else if (activity.unknown) activityName = @"Unknown";
+			
+			[[[self.objects objectAtIndex:0] detailTextLabel] setText:activityName];
+			
+			// Confidence
+			NSString *confidence = self.notAvailableSymbol;
+			if (activity.confidence == CMMotionActivityConfidenceHigh) confidence = @"High";
+			else if (activity.confidence == CMMotionActivityConfidenceMedium) confidence = @"Medium";
+			else if (activity.confidence == CMMotionActivityConfidenceLow) confidence = @"Low";
+			
+			[[[self.objects objectAtIndex:1] detailTextLabel] setText:confidence];
+			
+			// Start date
+			NSString *startTime = [self.dateFormatter stringFromDate:[activity startDate]];
+			[[[self.objects objectAtIndex:2] detailTextLabel] setText:startTime];
+			
+			[self.tableView reloadData];
+		};
+		
+		[self.activityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:activityHandler];
+	}
+	
+	if (self.stepCounter != nil)
+	{
+		CMStepUpdateHandler stepHandler = ^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error)
+		{
+			// Generate NSString representing number of steps or error
+			NSString *stepsText = self.notAvailableSymbol;
+			if (error != nil)
+			{
+				stepsText = @"Error";
+				NSLog(@"CMStepUpdateHandler received error: %@", [error description]); // TODO: replace w/ uialertview?
+			}
+			else
+			{
+				stepsText = [NSString stringWithFormat:@"%ld", numberOfSteps];
+			}
+			
+			// Apply to view
+			[[[self.objects objectAtIndex:4] detailTextLabel] setText:stepsText];
+			[self.tableView reloadData];
+		};
+		
+		// Attach the step handler block to the step manager. Update every time there is a new step.
+		[self.stepCounter startStepCountingUpdatesToQueue:[NSOperationQueue mainQueue] updateOn:1 withHandler:stepHandler];
+	}
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[self.activityManager stopActivityUpdates];
+	[self.stepCounter stopStepCountingUpdates];
+}
 
 - (void)didReceiveMemoryWarning
 {
