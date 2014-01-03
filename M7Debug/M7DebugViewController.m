@@ -101,8 +101,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	self.navigationItem.leftBarButtonItem = nil;
-	self.navigationItem.rightBarButtonItem = nil;
 	/* uncomment to set navigation bar color
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.0 green:0.4 blue:0.8 alpha:1.0];
 	self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
