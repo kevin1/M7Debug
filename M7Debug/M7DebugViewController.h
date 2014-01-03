@@ -1,5 +1,5 @@
 //
-//  M7DebugMasterViewController.h
+//  M7DebugViewController.h
 //  M7Debug
 //
 //  Created by Kevin on 1/2/14.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
 
-@interface M7DebugMasterViewController : UITableViewController
+@interface M7DebugViewController : UITableViewController
 
 @end

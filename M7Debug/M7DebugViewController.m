@@ -1,14 +1,14 @@
 //
-//  M7DebugMasterViewController.m
+//  M7DebugViewController.m
 //  M7Debug
 //
 //  Created by Kevin on 1/2/14.
 //  Copyright (c) 2014 Kevin. All rights reserved.
 //
 
-#import "M7DebugMasterViewController.h"
+#import "M7DebugViewController.h"
 
-@interface M7DebugMasterViewController()
+@interface M7DebugViewController()
 
 @property (strong, nonatomic) NSMutableArray *objects;
 @property (strong, nonatomic) NSTimer *refreshTimer;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation M7DebugMasterViewController
+@implementation M7DebugViewController
 
 - (NSMutableArray *)objects
 {
