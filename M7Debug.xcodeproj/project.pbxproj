@@ -463,6 +463,7 @@
 				0A7F1A4018760105007B7B60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A7F1A4118760105007B7B60 /* Build configuration list for PBXNativeTarget "M7DebugTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +472,7 @@
 				0A7F1A4318760105007B7B60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
