@@ -34,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A5D565618768EBD00DB38FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0A5D5659187690B800DB38FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		0A7F1A0918760105007B7B60 /* M7Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M7Debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7F1A0C18760105007B7B60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0A7F1A0E18760105007B7B60 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -127,11 +127,11 @@
 		0A7F1A1318760105007B7B60 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0A5D565618768EBD00DB38FA /* README.md */,
 				0A7F1A1418760105007B7B60 /* M7Debug-Info.plist */,
 				0A7F1A1518760105007B7B60 /* InfoPlist.strings */,
 				0A7F1A1818760105007B7B60 /* main.m */,
 				0A7F1A1A18760105007B7B60 /* M7Debug-Prefix.pch */,
+				0A5D5659187690B800DB38FA /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
