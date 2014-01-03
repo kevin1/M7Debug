@@ -15,7 +15,6 @@
 		0A7F1A1D18760105007B7B60 /* M7DebugAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F1A1C18760105007B7B60 /* M7DebugAppDelegate.m */; };
 		0A7F1A2018760105007B7B60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7F1A1E18760105007B7B60 /* Main.storyboard */; };
 		0A7F1A2318760105007B7B60 /* M7DebugMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F1A2218760105007B7B60 /* M7DebugMasterViewController.m */; };
-		0A7F1A2618760105007B7B60 /* M7DebugDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F1A2518760105007B7B60 /* M7DebugDetailViewController.m */; };
 		0A7F1A2818760105007B7B60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7F1A2718760105007B7B60 /* Images.xcassets */; };
 		0A7F1A2F18760105007B7B60 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A7F1A2E18760105007B7B60 /* XCTest.framework */; };
 		0A7F1A3018760105007B7B60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A7F1A0C18760105007B7B60 /* Foundation.framework */; };
@@ -48,8 +47,6 @@
 		0A7F1A1F18760105007B7B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A7F1A2118760105007B7B60 /* M7DebugMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M7DebugMasterViewController.h; sourceTree = "<group>"; };
 		0A7F1A2218760105007B7B60 /* M7DebugMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M7DebugMasterViewController.m; sourceTree = "<group>"; };
-		0A7F1A2418760105007B7B60 /* M7DebugDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M7DebugDetailViewController.h; sourceTree = "<group>"; };
-		0A7F1A2518760105007B7B60 /* M7DebugDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M7DebugDetailViewController.m; sourceTree = "<group>"; };
 		0A7F1A2718760105007B7B60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0A7F1A2D18760105007B7B60 /* M7DebugTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = M7DebugTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7F1A2E18760105007B7B60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -120,8 +117,6 @@
 				0A7F1A1E18760105007B7B60 /* Main.storyboard */,
 				0A7F1A2118760105007B7B60 /* M7DebugMasterViewController.h */,
 				0A7F1A2218760105007B7B60 /* M7DebugMasterViewController.m */,
-				0A7F1A2418760105007B7B60 /* M7DebugDetailViewController.h */,
-				0A7F1A2518760105007B7B60 /* M7DebugDetailViewController.m */,
 				0A7F1A2718760105007B7B60 /* Images.xcassets */,
 				0A7F1A1318760105007B7B60 /* Supporting Files */,
 			);
@@ -256,7 +251,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A7F1A1D18760105007B7B60 /* M7DebugAppDelegate.m in Sources */,
-				0A7F1A2618760105007B7B60 /* M7DebugDetailViewController.m in Sources */,
 				0A7F1A1918760105007B7B60 /* main.m in Sources */,
 				0A7F1A2318760105007B7B60 /* M7DebugMasterViewController.m in Sources */,
 			);
@@ -388,6 +382,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "M7Debug/M7Debug-Prefix.pch";
 				INFOPLIST_FILE = "M7Debug/M7Debug-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -401,6 +396,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "M7Debug/M7Debug-Prefix.pch";
 				INFOPLIST_FILE = "M7Debug/M7Debug-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
