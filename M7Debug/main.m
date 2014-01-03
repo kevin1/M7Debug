@@ -10,9 +10,10 @@
 
 #import "M7DebugAppDelegate.h"
 
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
-	@autoreleasepool {
-	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([M7DebugAppDelegate class]));
+	@autoreleasepool
+	{
+		return UIApplicationMain(argc, argv, nil, NSStringFromClass([M7DebugAppDelegate class]));
 	}
 }

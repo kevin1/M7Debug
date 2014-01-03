@@ -29,13 +29,13 @@
 {
 	if (!_objects)
 	{
-        _objects = [[NSMutableArray alloc] initWithCapacity:4];
+		_objects = [[NSMutableArray alloc] initWithCapacity:4];
 		
 		[_objects addObject:[self cellWithLabel:@"Activity"]];           // 0
 		[_objects addObject:[self cellWithLabel:@"Confidence"]];         // 1
 		[_objects addObject:[self cellWithLabel:@"Start Time"]];         // 2
 		[_objects addObject:[self cellWithLabel:@"Steps Since Launch"]]; // 3
-    }
+	}
 	return _objects;
 }
 
@@ -94,12 +94,12 @@
 
 - (void)awakeFromNib
 {
-    [super awakeFromNib];
+	[super awakeFromNib];
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	/* uncomment to set navigation bar color
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.0 green:0.4 blue:0.8 alpha:1.0];
@@ -177,8 +177,8 @@
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table View
@@ -195,28 +195,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+	//UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 	// NSIndexPath works sort of like a tree. This gets the second layer. (index starts from 0)
 	return [self.objects objectAtIndex:[indexPath indexAtPosition:1]];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // No cells should be editable
-    return NO;
+	// No cells should be editable
+	return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*if (editingStyle == UITableViewCellEditingStyleDelete)
+	/*if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } 
+		[_objects removeObjectAtIndex:indexPath.row];
+		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	} 
 	else if (editingStyle == UITableViewCellEditingStyleInsert)
 	{
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }*/
+		// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+	}*/
 }
 
 /*
@@ -231,20 +231,20 @@
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+	// Return NO if you do not want the item to be re-orderable.
+	return YES;
 }
 */
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"])
+	if ([[segue identifier] isEqualToString:@"showDetail"])
 	{
 		/*  this is a single view app
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];*/
-    }
+		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+		NSDate *object = _objects[indexPath.row];
+		[[segue destinationViewController] setDetailItem:object];*/
+	}
 }
 
 @end
