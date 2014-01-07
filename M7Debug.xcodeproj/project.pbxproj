@@ -202,6 +202,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Kevin;
 				TargetAttributes = {
+					0A7F1A0818760105007B7B60 = {
+						DevelopmentTeam = SG7VZ8953Q;
+					};
 					0A7F1A2C18760105007B7B60 = {
 						TestTargetID = 0A7F1A0818760105007B7B60;
 					};
@@ -381,6 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "M7Debug/M7Debug-Prefix.pch";
 				INFOPLIST_FILE = "M7Debug/M7Debug-Info.plist";
@@ -395,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "M7Debug/M7Debug-Prefix.pch";
 				INFOPLIST_FILE = "M7Debug/M7Debug-Info.plist";
