@@ -147,7 +147,7 @@
 			}
 			
 			// Apply to view
-			[[[self.objects objectAtIndex:4] detailTextLabel] setText:stepsText];
+			[[[self.objects objectAtIndex:3] detailTextLabel] setText:stepsText];
 			[self.tableView reloadData];
 		};
 		
