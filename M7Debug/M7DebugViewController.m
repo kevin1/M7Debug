@@ -17,7 +17,6 @@
 @property (strong, nonatomic) NSString *notAvailableSymbol;
 
 @property (strong, nonatomic) CMMotionActivityManager *activityManager;
-@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 @property (strong, nonatomic) CMStepCounter *stepCounter;
 
@@ -80,18 +79,6 @@
 	return _stepCounter;
 }
 
-- (NSDateFormatter *)dateFormatter
-{
-	if (!_dateFormatter)
-	{
-		_dateFormatter = [[NSDateFormatter alloc] init];
-		
-		[_dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-		[_dateFormatter setDateStyle:NSDateFormatterShortStyle];
-	}
-	return _dateFormatter;
-}
-
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
@@ -134,7 +121,7 @@
 			[[[self.objects objectAtIndex:1] detailTextLabel] setText:confidence];
 			
 			// Start date
-			NSString *startTime = [self.dateFormatter stringFromDate:[activity startDate]];
+			NSString *startTime = [NSDateFormatter localizedStringFromDate:activity.startDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterMediumStyle];
 			[[[self.objects objectAtIndex:2] detailTextLabel] setText:startTime];
 			
 			[self.tableView reloadData];
