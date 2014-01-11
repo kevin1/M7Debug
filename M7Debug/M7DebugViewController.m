@@ -20,6 +20,9 @@
 
 @property (strong, nonatomic) CMStepCounter *stepCounter;
 
+@property (nonatomic, readwrite, getter = isSpeaking) BOOL speaking;
+@property (strong, nonatomic) AVSpeechSynthesizer *speechSynthesizer;
+
 @end
 
 @implementation M7DebugViewController
@@ -79,6 +82,15 @@
 	return _stepCounter;
 }
 
+- (AVSpeechSynthesizer *)speechSynthesizer
+{
+	if (!_speechSynthesizer)
+	{
+		_speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
+	}
+	return _speechSynthesizer;
+}
+
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
@@ -124,7 +136,18 @@
 			NSString *startTime = [NSDateFormatter localizedStringFromDate:activity.startDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterMediumStyle];
 			[[[self.objects objectAtIndex:2] detailTextLabel] setText:startTime];
 			
+			// Apply to view
 			[self.tableView reloadData];
+			
+			// Optionally, speak to the user about the change
+			if (self.isSpeaking)
+			{
+				// Construct what we're going to say (Example: "Automotive confidence medium")
+				NSString *changeDescription = [activityName stringByAppendingString:@" confidence "];
+				changeDescription = [changeDescription stringByAppendingString:confidence];
+				// Say it
+				[self.speechSynthesizer speakUtterance:[AVSpeechUtterance speechUtteranceWithString:changeDescription]];
+			}
 		};
 		
 		[self.activityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:activityHandler];
@@ -149,6 +172,13 @@
 			// Apply to view
 			[[[self.objects objectAtIndex:3] detailTextLabel] setText:stepsText];
 			[self.tableView reloadData];
+			
+			// Optionally, speak to the user about the change
+			if (self.isSpeaking)
+			{
+				NSString *changeDescription = [stepsText stringByAppendingString:@" steps"];
+				[self.speechSynthesizer speakUtterance:[AVSpeechUtterance speechUtteranceWithString:changeDescription]];
+			}
 		};
 		
 		// Attach the step handler block to the step manager. Update every time there is a new step.
@@ -166,6 +196,12 @@
 {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+- (IBAction)toggleSpeaking:(UIBarButtonItem *)sender
+{
+	self.speaking = !self.speaking;
+	sender.style = self.speaking ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
 }
 
 #pragma mark - Table View
