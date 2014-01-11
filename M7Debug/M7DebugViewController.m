@@ -115,26 +115,27 @@
 		CMMotionActivityHandler activityHandler = ^(CMMotionActivity *activity)
 		{
 			// Current activity
-			NSString *activityName = self.notAvailableSymbol;
+			NSString *activityName = @"";
 			if (activity.stationary) activityName = @"Stationary";
 			else if (activity.walking) activityName = @"Walking";
 			else if (activity.running) activityName = @"Running";
 			else if (activity.automotive) activityName = @"Automotive";
 			else if (activity.unknown) activityName = @"Unknown";
 			
-			[[[self.objects objectAtIndex:0] detailTextLabel] setText:activityName];
+			[self setDetailTextAtIndex:0 toText:activityName];
 			
 			// Confidence
-			NSString *confidence = self.notAvailableSymbol;
+			NSString *confidence = @"";
 			if (activity.confidence == CMMotionActivityConfidenceHigh) confidence = @"High";
 			else if (activity.confidence == CMMotionActivityConfidenceMedium) confidence = @"Medium";
 			else if (activity.confidence == CMMotionActivityConfidenceLow) confidence = @"Low";
 			
-			[[[self.objects objectAtIndex:1] detailTextLabel] setText:confidence];
+			[self setDetailTextAtIndex:1 toText:confidence];
 			
 			// Start date
 			NSString *startTime = [NSDateFormatter localizedStringFromDate:activity.startDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterMediumStyle];
-			[[[self.objects objectAtIndex:2] detailTextLabel] setText:startTime];
+			
+			[self setDetailTextAtIndex:2 toText:startTime];
 			
 			// Apply to view
 			[self.tableView reloadData];
@@ -158,7 +159,7 @@
 		CMStepUpdateHandler stepHandler = ^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error)
 		{
 			// Generate NSString representing number of steps or error
-			NSString *stepsText = self.notAvailableSymbol;
+			NSString *stepsText;
 			if (error != nil)
 			{
 				stepsText = @"Error";
@@ -202,6 +203,15 @@
 {
 	self.speaking = !self.speaking;
 	sender.style = self.speaking ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
+}
+
+- (void)setDetailTextAtIndex:(NSUInteger)index toText:(NSString *)text
+{
+	if (text == nil || [text isEqualToString:@""])
+	{
+		text = self.notAvailableSymbol;
+	}
+	((UITableViewCell *)[self.objects objectAtIndex:index]).detailTextLabel.text = text;
 }
 
 #pragma mark - Table View
